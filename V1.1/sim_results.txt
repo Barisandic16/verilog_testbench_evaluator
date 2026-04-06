@@ -1,0 +1,1578 @@
+JC.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: JC.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module JC_counter (
+      |        ^~~~~~~~~~
+                       JC.tb:3:8: ... Location of module with timescale
+    3 | module testbench;
+      |        ^~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: JC.tb:23:12: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'testbench'
+   23 |     always #((CLK_PERIOD)/2) clk = ~clk;
+      |            ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: JC.tb:33:9: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'testbench'
+   33 |         #((CLK_PERIOD) * 2);
+      |         ^
+%Error-NEEDTIMINGOPT: JC.tb:37:9: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'testbench'
+   37 |         #((CLK_PERIOD) * 2);
+      |         ^
+%Error-NEEDTIMINGOPT: JC.tb:41:9: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'testbench'
+   41 |         #((CLK_PERIOD) * 20);
+      |         ^
+%Error-NEEDTIMINGOPT: JC.tb:43:9: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'testbench'
+   43 |         #((CLK_PERIOD) * 44);
+      |         ^
+%Error-NEEDTIMINGOPT: JC.tb:45:9: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'testbench'
+   45 |         #((CLK_PERIOD) * 1);
+      |         ^
+%Error-NEEDTIMINGOPT: JC.tb:47:9: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'testbench'
+   47 |         #((CLK_PERIOD) * 62);
+      |         ^
+%Error: Exiting due to 7 error(s), 1 warning(s)
+--------------------------------------------------
+accu.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: accu.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module accu (
+      |        ^~~~
+                       accu.tb:3:8: ... Location of module with timescale
+    3 | module tb_valid_ready;
+      |        ^~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: accu.v:21:34: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'data_in' generates 8 bits.
+                                  : ... note: In instance 'tb_valid_ready.uut'
+   21 |                 data_out  <= sum + data_in;
+      |                                  ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: accu.v:26:34: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'data_in' generates 8 bits.
+                                  : ... note: In instance 'tb_valid_ready.uut'
+   26 |                 sum       <= sum + data_in;
+      |                                  ^
+%Error-NEEDTIMINGOPT: accu.tb:18:13: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'tb_valid_ready'
+   18 |     forever #(PERIOD/2)  clk=~clk;
+      |             ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: accu.tb:23:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   23 |     #(PERIOD*2) rst_n  =  1;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:38:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   38 |     #(PERIOD*1+0.01); 
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:39:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   39 |     #(PERIOD)   data_in = 8'd1;valid_in = 1;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:40:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   40 |     #(PERIOD)   data_in = 8'd2;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:41:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   41 |     #(PERIOD)   data_in = 8'd3;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:42:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   42 |     #(PERIOD)   data_in = 8'd14;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:44:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   44 |     #(PERIOD)   data_in = 8'd5;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:45:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   45 |     #(PERIOD)   data_in = 8'd2;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:46:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   46 |     #(PERIOD)   data_in = 8'd103;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:47:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   47 |     #(PERIOD)   data_in = 8'd4;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:49:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   49 |     #(PERIOD)   data_in = 8'd5;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:50:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   50 |     #(PERIOD)   data_in = 8'd6;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:51:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   51 |     #(PERIOD)   data_in = 8'd3;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:52:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   52 |     #(PERIOD)   data_in = 8'd54;
+      |     ^
+%Error-NEEDTIMINGOPT: accu.tb:53:5: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   53 |     #(PERIOD*2);
+      |     ^
+%Warning-WIDTHEXPAND: accu.tb:59:15: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's CONST '9'h14' generates 9 bits.
+                                   : ... note: In instance 'tb_valid_ready'
+   59 |     result[0] = 9'd20;
+      |               ^
+%Warning-WIDTHEXPAND: accu.tb:60:15: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's CONST '9'h72' generates 9 bits.
+                                   : ... note: In instance 'tb_valid_ready'
+   60 |     result[1] = 9'd114;
+      |               ^
+%Warning-WIDTHEXPAND: accu.tb:61:15: Operator ASSIGN expects 10 bits on the Assign RHS, but Assign RHS's CONST '9'h44' generates 9 bits.
+                                   : ... note: In instance 'tb_valid_ready'
+   61 |     result[2] = 9'd68;
+      |               ^
+%Error-NEEDTIMINGOPT: accu.tb:71:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_valid_ready'
+   71 |         #((PERIOD) * 1);         
+      |         ^
+%Error: Exiting due to 17 error(s), 6 warning(s)
+--------------------------------------------------
+adder16.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: adder16.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module adder_8bit(
+      |        ^~~~~~~~~~
+                       adder16.tb:3:8: ... Location of module with timescale
+    3 | module add16_tb();
+      |        ^~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: adder16.v:11:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   11 | module adder_16bit(
+      |        ^~~~~~~~~~~
+                       adder16.tb:3:8: ... Location of module with timescale
+    3 | module add16_tb();
+      |        ^~~~~~~~
+%Warning-WIDTHTRUNC: adder16.tb:23:15: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's REPLICATE generates 32 bits.
+                                     : ... note: In instance 'add16_tb'
+   23 |             a = {$random};
+      |               ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: adder16.tb:24:15: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's REPLICATE generates 32 bits.
+                                     : ... note: In instance 'add16_tb'
+   24 |             b = {$random};
+      |               ^
+%Error-NEEDTIMINGOPT: adder16.tb:27:13: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'add16_tb'
+   27 |             #10;
+      |             ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error: Exiting due to 1 error(s), 4 warning(s)
+--------------------------------------------------
+adder32.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: adder32.v:11:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   11 | module cla_4bit (
+      |        ^~~~~~~~
+                       adder32.tb:2:8: ... Location of module with timescale
+    2 | module adder32_tb;
+      |        ^~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: adder32.v:58:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   58 | module carry_lookahead_unit (
+      |        ^~~~~~~~~~~~~~~~~~~~
+                       adder32.tb:2:8: ... Location of module with timescale
+    2 | module adder32_tb;
+      |        ^~~~~~~~~~
+%Warning-TIMESCALEMOD: adder32.v:95:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   95 | module cla_16bit (
+      |        ^~~~~~~~~
+                       adder32.tb:2:8: ... Location of module with timescale
+    2 | module adder32_tb;
+      |        ^~~~~~~~~~
+%Warning-TIMESCALEMOD: adder32.v:175:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+  175 | module adder_32bit (
+      |        ^~~~~~~~~~~
+                       adder32.tb:2:8: ... Location of module with timescale
+    2 | module adder32_tb;
+      |        ^~~~~~~~~~
+%Error-NEEDTIMINGOPT: adder32.tb:26:7: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'adder32_tb'
+   26 |       #10; 
+      |       ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Warning-WIDTHEXPAND: adder32.tb:28:24: Operator ADD expects 34 bits on the LHS, but LHS's VARREF 'A' generates 32 bits.
+                                      : ... note: In instance 'adder32_tb'
+   28 |       expected_sum = A + B;
+      |                        ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: adder32.tb:28:24: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'B' generates 32 bits.
+                                      : ... note: In instance 'adder32_tb'
+   28 |       expected_sum = A + B;
+      |                        ^
+%Error: Exiting due to 1 error(s), 6 warning(s)
+--------------------------------------------------
+adder8.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: adder8.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module adder_8bit(
+      |        ^~~~~~~~~~
+                       adder8.tb:3:8: ... Location of module with timescale
+    3 | module testbench;
+      |        ^~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: adder8.v:24:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   24 | module full_adder(
+      |        ^~~~~~~~~~
+                       adder8.tb:3:8: ... Location of module with timescale
+    3 | module testbench;
+      |        ^~~~~~~~~
+%Warning-WIDTHEXPAND: adder8.tb:27:21: Operator AND expects 32 bits on the RHS, but RHS's CONST '8'hff' generates 8 bits.
+                                     : ... note: In instance 'testbench'
+   27 |         a = $random & 8'hff;
+      |                     ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: adder8.tb:27:11: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's AND generates 32 bits.
+                                    : ... note: In instance 'testbench'
+   27 |         a = $random & 8'hff;
+      |           ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: adder8.tb:28:21: Operator AND expects 32 bits on the RHS, but RHS's CONST '8'hff' generates 8 bits.
+                                     : ... note: In instance 'testbench'
+   28 |         b = $random & 8'hff;
+      |                     ^
+%Warning-WIDTHTRUNC: adder8.tb:28:11: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's AND generates 32 bits.
+                                    : ... note: In instance 'testbench'
+   28 |         b = $random & 8'hff;
+      |           ^
+%Warning-WIDTHEXPAND: adder8.tb:29:23: Operator AND expects 32 bits on the RHS, but RHS's CONST '1'h1' generates 1 bits.
+                                     : ... note: In instance 'testbench'
+   29 |         cin = $random & 1'b1;
+      |                       ^
+%Warning-WIDTHTRUNC: adder8.tb:29:13: Operator ASSIGN expects 1 bits on the Assign RHS, but Assign RHS's AND generates 32 bits.
+                                    : ... note: In instance 'testbench'
+   29 |         cin = $random & 1'b1;
+      |             ^
+%Error-NEEDTIMINGOPT: adder8.tb:30:9: Use --timing or --no-timing to specify how delays should be handled
+                                    : ... note: In instance 'testbench'
+   30 |         #10;
+      |         ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error: Exiting due to 1 error(s), 8 warning(s)
+--------------------------------------------------
+adderpipe64.v
+  Iverilog Compile: FAIL
+  Iverilog Simulation: NOT RUN
+  Message:
+adderpipe64.tb:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+adderpipe64.tb:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+--------------------------------------------------
+alu.v
+  Iverilog Compile: OK
+  Iverilog Simulation: FAIL
+  Message:
+ERROR: alu.tb:43: $readmemh: Unable to open reference.dat for reading.
+===========Error===========
+alu.tb:86: $finish called at 175000 (1ps)
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: alu.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module alu(
+      |        ^~~
+                       alu.tb:3:8: ... Location of module with timescale
+    3 | module test_alu();
+      |        ^~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: alu.tb:65:5: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'test_alu'
+   65 |     #5;
+      |     ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: alu.tb:72:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'test_alu'
+   72 |         #5;
+      |         ^
+%Error-NEEDTIMINGOPT: alu.tb:74:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'test_alu'
+   74 |         #5;
+      |         ^
+%Error: Exiting due to 3 error(s), 1 warning(s)
+--------------------------------------------------
+asynfifo.v
+  Iverilog Compile: OK
+  Iverilog Simulation: FAIL
+  Message:
+ERROR: asynfifo.tb:65: $readmemh: Unable to open wfull.txt for reading.
+ERROR: asynfifo.tb:66: $readmemh: Unable to open rempty.txt for reading.
+ERROR: asynfifo.tb:67: $readmemh: Unable to open tdata.txt for reading.
+===========Error===========
+asynfifo.tb:52: $finish called at 1050 (1ns)
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: asynfifo.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module dual_port_RAM #(
+      |        ^~~~~~~~~~~~~
+                       asynfifo.tb:3:8: ... Location of module with timescale
+    3 | module asyn_fifo_tb;
+      |        ^~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: asynfifo.v:30:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   30 | module asyn_fifo #(
+      |        ^~~~~~~~~
+                       asynfifo.tb:3:8: ... Location of module with timescale
+    3 | module asyn_fifo_tb;
+      |        ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: asynfifo.v:66:47: Operator AND expects 5 bits on the LHS, but LHS's VARREF 'winc' generates 1 bits.
+                                      : ... note: In instance 'asyn_fifo_tb.dut'
+   66 |     assign waddr_bin_next = waddr_bin + (winc & ~wfull);
+      |                                               ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: asynfifo.v:66:49: Operator NOT expects 5 bits on the LHS, but LHS's VARREF 'wfull' generates 1 bits.
+                                      : ... note: In instance 'asyn_fifo_tb.dut'
+   66 |     assign waddr_bin_next = waddr_bin + (winc & ~wfull);
+      |                                                 ^
+%Warning-WIDTHEXPAND: asynfifo.v:82:47: Operator AND expects 5 bits on the LHS, but LHS's VARREF 'rinc' generates 1 bits.
+                                      : ... note: In instance 'asyn_fifo_tb.dut'
+   82 |     assign raddr_bin_next = raddr_bin + (rinc & ~rempty);
+      |                                               ^
+%Warning-WIDTHEXPAND: asynfifo.v:82:49: Operator NOT expects 5 bits on the LHS, but LHS's VARREF 'rempty' generates 1 bits.
+                                      : ... note: In instance 'asyn_fifo_tb.dut'
+   82 |     assign raddr_bin_next = raddr_bin + (rinc & ~rempty);
+      |                                                 ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:23:10: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'asyn_fifo_tb'
+   23 |   always #5 wclk = ~wclk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: asynfifo.tb:24:10: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'asyn_fifo_tb'
+   24 |   always #10 rclk = ~rclk;
+      |          ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:40:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   40 |     #20;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:43:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   43 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:46:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   46 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:48:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   48 |     #500;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:50:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   50 |     #500;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:51:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   51 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:64:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   64 |     #550;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:72:7: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   72 |       #10;
+      |       ^
+%Warning-WIDTHEXPAND: asynfifo.tb:76:21: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'wfull' generates 1 bits.
+                                       : ... note: In instance 'asyn_fifo_tb'
+   76 |       error = (wfull==data1[i] && rempty == data2[i] && rdata ==data3[i]) ? error:error+1;
+      |                     ^~
+%Warning-WIDTHEXPAND: asynfifo.tb:76:42: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'rempty' generates 1 bits.
+                                       : ... note: In instance 'asyn_fifo_tb'
+   76 |       error = (wfull==data1[i] && rempty == data2[i] && rdata ==data3[i]) ? error:error+1;
+      |                                          ^~
+%Warning-WIDTHEXPAND: asynfifo.tb:76:63: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'rdata' generates 8 bits.
+                                       : ... note: In instance 'asyn_fifo_tb'
+   76 |       error = (wfull==data1[i] && rempty == data2[i] && rdata ==data3[i]) ? error:error+1;
+      |                                                               ^~
+%Error-NEEDTIMINGOPT: asynfifo.tb:99:5: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'asyn_fifo_tb'
+   99 |     #20;
+      |     ^
+%Error-NEEDTIMINGOPT: asynfifo.tb:106:5: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'asyn_fifo_tb'
+  106 |     #10;
+      |     ^
+%Error: Exiting due to 12 error(s), 9 warning(s)
+--------------------------------------------------
+calendar.v
+  Iverilog Compile: OK
+  Iverilog Simulation: FAIL
+  Message:
+ERROR: calendar.tb:31: $readmemh: Unable to open reference.txt for reading.
+===========Error===========
+calendar.tb:48: $finish called at 40035000 (1ps)
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: calendar.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module calendar(
+      |        ^~~~~~~~
+                       calendar.tb:2:8: ... Location of module with timescale
+    2 | module main();
+      |        ^~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: calendar.tb:11:10: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'main'
+   11 |  forever #5 clk=~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: calendar.tb:26:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'main'
+   26 |  #10;
+      |  ^
+%Error-NEEDTIMINGOPT: calendar.tb:28:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'main'
+   28 |  #25;
+      |  ^
+%Error-NEEDTIMINGOPT: calendar.tb:37:3: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'main'
+   37 |   #10;
+      |   ^
+%Error: Exiting due to 4 error(s), 1 warning(s)
+--------------------------------------------------
+counter12.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: counter12.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module counter_12 (
+      |        ^~~~~~~~~~
+                       counter12.tb:2:8: ... Location of module with timescale
+    2 | module counter_12_tb;
+      |        ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: counter12.tb:15:10: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'counter_12_tb'
+   15 |   always #5 clk = ~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: counter12.tb:23:5: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'counter_12_tb'
+   23 |     #20 rst_n = 1;
+      |     ^
+%Error-NEEDTIMINGOPT: counter12.tb:27:7: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'counter_12_tb'
+   27 |       #10;
+      |       ^
+%Error-NEEDTIMINGOPT: counter12.tb:30:5: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'counter_12_tb'
+   30 |     #100 valid_count = 1;
+      |     ^
+%Warning-WIDTHEXPAND: counter12.tb:32:20: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'out' generates 4 bits.
+                                        : ... note: In instance 'counter_12_tb'
+   32 |       error = (out == i) ?error:error+1;
+      |                    ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: counter12.tb:34:7: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'counter_12_tb'
+   34 |       #10;
+      |       ^
+%Error-NEEDTIMINGOPT: counter12.tb:40:7: Use --timing or --no-timing to specify how delays should be handled
+                                       : ... note: In instance 'counter_12_tb'
+   40 |       #10;
+      |       ^
+%Error: Exiting due to 6 error(s), 2 warning(s)
+--------------------------------------------------
+div16.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: div16.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module div_16bit(
+      |        ^~~~~~~~~
+                       div16.tb:2:8: ... Location of module with timescale
+    2 | module tb_division();
+      |        ^~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: div16.tb:16:11: Operator URANDOMRANGE expects 32 bits on the LHS, but LHS's CONST '1'h0' generates 1 bits.
+                                    : ... note: In instance 'tb_division'
+   16 |       A = $urandom_range(1'b0, 16'b1111_1111_1111_1111);
+      |           ^~~~~~~~~~~~~~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: div16.tb:16:11: Operator URANDOMRANGE expects 32 bits on the RHS, but RHS's CONST '16'hffff' generates 16 bits.
+                                    : ... note: In instance 'tb_division'
+   16 |       A = $urandom_range(1'b0, 16'b1111_1111_1111_1111);
+      |           ^~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: div16.tb:16:9: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's URANDOMRANGE generates 32 bits.
+                                  : ... note: In instance 'tb_division'
+   16 |       A = $urandom_range(1'b0, 16'b1111_1111_1111_1111);
+      |         ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: div16.tb:17:11: Operator URANDOMRANGE expects 32 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+                                    : ... note: In instance 'tb_division'
+   17 |       B = $urandom_range(1'b1, 8'b1111_1111);
+      |           ^~~~~~~~~~~~~~
+%Warning-WIDTHEXPAND: div16.tb:17:11: Operator URANDOMRANGE expects 32 bits on the RHS, but RHS's CONST '8'hff' generates 8 bits.
+                                    : ... note: In instance 'tb_division'
+   17 |       B = $urandom_range(1'b1, 8'b1111_1111);
+      |           ^~~~~~~~~~~~~~
+%Warning-WIDTHTRUNC: div16.tb:17:9: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's URANDOMRANGE generates 32 bits.
+                                  : ... note: In instance 'tb_division'
+   17 |       B = $urandom_range(1'b1, 8'b1111_1111);
+      |         ^
+%Warning-WIDTHEXPAND: div16.tb:18:26: Operator DIV expects 16 bits on the RHS, but RHS's VARREF 'B' generates 8 bits.
+                                    : ... note: In instance 'tb_division'
+   18 |       expected_result = A/B;
+      |                          ^
+%Warning-WIDTHEXPAND: div16.tb:19:23: Operator MODDIV expects 16 bits on the RHS, but RHS's VARREF 'B' generates 8 bits.
+                                    : ... note: In instance 'tb_division'
+   19 |       expected_odd = A%B;
+      |                       ^
+%Error-NEEDTIMINGOPT: div16.tb:20:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'tb_division'
+   20 |       #10; 
+      |       ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error: Exiting due to 1 error(s), 9 warning(s)
+--------------------------------------------------
+edge.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: edge.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module edge_detect (
+      |        ^~~~~~~~~~~
+                       edge.tb:3:8: ... Location of module with timescale
+    3 | module testbench;
+      |        ^~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: edge.tb:26:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   26 |         #5;
+      |         ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: edge.tb:30:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   30 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:32:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   32 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:37:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   37 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:39:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   39 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:45:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   45 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:47:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   47 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:53:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   53 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:55:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   55 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: edge.tb:70:12: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'testbench'
+   70 |     always #5 clk = ~clk;
+      |            ^
+%Error: Exiting due to 10 error(s), 1 warning(s)
+--------------------------------------------------
+freq.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Error-NEEDTIMINGOPT: freq.tb:13:10: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'test'
+   13 |  forever #5 clk = ~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: freq.tb:19:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   19 |  #10;
+      |  ^
+%Error-NEEDTIMINGOPT: freq.tb:21:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   21 |  #35;
+      |  ^
+%Error-NEEDTIMINGOPT: freq.tb:26:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   26 |  #10;
+      |  ^
+%Error-NEEDTIMINGOPT: freq.tb:29:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   29 |  #40;
+      |  ^
+%Error-NEEDTIMINGOPT: freq.tb:32:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   32 |  #130;
+      |  ^
+%Error-NEEDTIMINGOPT: freq.tb:35:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   35 |  #400;
+      |  ^
+%Error-NEEDTIMINGOPT: freq.tb:38:2: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'test'
+   38 |  #410;
+      |  ^
+%Error: Exiting due to 8 error(s)
+--------------------------------------------------
+fsm.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: fsm.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module fsm (
+      |        ^~~
+                       fsm.tb:3:8: ... Location of module with timescale
+    3 | module main();
+      |        ^~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: fsm.tb:13:10: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'main'
+   13 |  forever #5 clk=~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: fsm.tb:18:2: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   18 |  #10;
+      |  ^
+%Error-NEEDTIMINGOPT: fsm.tb:20:2: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   20 |  #28;
+      |  ^
+%Error-NEEDTIMINGOPT: fsm.tb:23:2: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   23 |  #10 IN=0;
+      |  ^
+%Error-NEEDTIMINGOPT: fsm.tb:26:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   26 |         #10 IN=0;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:29:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   29 |         #10 IN=1;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:32:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   32 |         #10 IN=1;  
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:35:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   35 |         #10 IN=0;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:38:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   38 |         #10 IN=0;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:41:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   41 |         #10 IN=1;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:44:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   44 |         #10 IN=1;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:47:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   47 |         #10 IN=0;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:50:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   50 |         #10 IN=0;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:53:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   53 |         #10 IN=1;
+      |         ^
+%Error-NEEDTIMINGOPT: fsm.tb:56:9: Use --timing or --no-timing to specify how delays should be handled
+                                 : ... note: In instance 'main'
+   56 |         #10 IN=1;
+      |         ^
+%Error: Exiting due to 15 error(s), 1 warning(s)
+--------------------------------------------------
+multi16.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Error-NEEDTIMINGOPT: multi16.tb:29:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   29 |     #5 clk = ~clk;
+      |     ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: multi16.tb:41:7: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   41 |       #100;
+      |       ^
+%Error-NEEDTIMINGOPT: multi16.tb:43:7: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   43 |       #50;
+      |       ^
+%Warning-WIDTHTRUNC: multi16.tb:44:11: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                     : ... note: In instance 'tb_multi_16bit'
+   44 |       ain = $random;
+      |           ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: multi16.tb:45:11: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                     : ... note: In instance 'tb_multi_16bit'
+   45 |       bin = $random;
+      |           ^
+%Error-NEEDTIMINGOPT: multi16.tb:46:7: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   46 |       #50;
+      |       ^
+%Error-NEEDTIMINGOPT: multi16.tb:49:9: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   49 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: multi16.tb:58:7: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   58 |       #100;
+      |       ^
+%Error-NEEDTIMINGOPT: multi16.tb:71:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_multi_16bit'
+   71 |     #50000;
+      |     ^
+%Error: Exiting due to 7 error(s), 2 warning(s)
+--------------------------------------------------
+multibooth8.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: multibooth8.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module multi_booth_8bit(
+      |        ^~~~~~~~~~~~~~~~
+                       multibooth8.tb:5:8: ... Location of module with timescale
+    5 | module booth4_mul_tb () ;
+      |        ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: multibooth8.v:28:31: Bit extraction of var[15:0] requires 4 bit index, not 5 bits.
+                                        : ... note: In instance 'booth4_mul_tb.dut'
+   28 |                 if (multiplier[ctr] == 1'b1) begin
+      |                               ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: multibooth8.tb:25:12: Use --timing or --no-timing to specify how delays should be handled
+                                          : ... note: In instance 'booth4_mul_tb'
+   25 |     always #5 clk = ~clk;
+      |            ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: multibooth8.tb:36:13: Use --timing or --no-timing to specify how event controls should be handled
+                                          : ... note: In instance 'booth4_mul_tb'
+   36 |             @(posedge clk);
+      |             ^
+%Error-NEEDTIMINGOPT: multibooth8.tb:38:13: Use --timing or --no-timing to specify how delays should be handled
+                                          : ... note: In instance 'booth4_mul_tb'
+   38 |             #1 reset = 0;
+      |             ^
+%Error-NEEDTIMINGOPT: multibooth8.tb:41:17: Use --timing or --no-timing to specify how event controls should be handled
+                                          : ... note: In instance 'booth4_mul_tb'
+   41 |                 @(posedge clk);  
+      |                 ^
+%Error: Exiting due to 4 error(s), 2 warning(s)
+--------------------------------------------------
+multipipe4.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: multipipe4.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module multi_pipe_4bit #(
+      |        ^~~~~~~~~~~~~~~
+                       multipipe4.tb:3:8: ... Location of module with timescale
+    3 | module multi_pipe_tb;
+      |        ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: multipipe4.tb:20:10: Use --timing or --no-timing to specify how delays should be handled
+                                         : ... note: In instance 'multi_pipe_tb'
+   20 |   always #5 clk = ~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: multipipe4.tb:32:5: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'multi_pipe_tb'
+   32 |     #10;
+      |     ^
+%Warning-WIDTHTRUNC: multipipe4.tb:39:13: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                        : ... note: In instance 'multi_pipe_tb'
+   39 |       mul_a =  $random;
+      |             ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: multipipe4.tb:40:13: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                        : ... note: In instance 'multi_pipe_tb'
+   40 |       mul_b =  $random;
+      |             ^
+%Error-NEEDTIMINGOPT: multipipe4.tb:41:7: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'multi_pipe_tb'
+   41 |       #10;
+      |       ^
+%Error-NEEDTIMINGOPT: multipipe4.tb:44:7: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'multi_pipe_tb'
+   44 |       #20;
+      |       ^
+%Error: Exiting due to 4 error(s), 3 warning(s)
+--------------------------------------------------
+multipipe8.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: multipipe8.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module multi_pipe_8bit(
+      |        ^~~~~~~~~~~~~~~
+                       multipipe8.tb:3:8: ... Location of module with timescale
+    3 | module tb_multi_pipe();
+      |        ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: multipipe8.tb:31:8: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'tb_multi_pipe'
+   31 | always # 10 clk = ~clk; 
+      |        ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: multipipe8.tb:40:6: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'tb_multi_pipe'
+   40 |      #(20*200+1);
+      |      ^
+%Error-NEEDTIMINGOPT: multipipe8.tb:44:6: Use --timing or --no-timing to specify how delays should be handled
+                                        : ... note: In instance 'tb_multi_pipe'
+   44 |      #(20*10);
+      |      ^
+%Error-NEEDTIMINGOPT: multipipe8.tb:51:11: Use --timing or --no-timing to specify how delays should be handled
+                                         : ... note: In instance 'tb_multi_pipe'
+   51 |           #(20*20);
+      |           ^
+%Error-NEEDTIMINGOPT: multipipe8.tb:53:11: Use --timing or --no-timing to specify how delays should be handled
+                                         : ... note: In instance 'tb_multi_pipe'
+   53 |           #(20*10);
+      |           ^
+%Warning-WIDTHTRUNC: multipipe8.tb:54:17: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                        : ... note: In instance 'tb_multi_pipe'
+   54 |           mul_a = $random;
+      |                 ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: multipipe8.tb:55:17: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                        : ... note: In instance 'tb_multi_pipe'
+   55 |           mul_b = $random;
+      |                 ^
+%Error-NEEDTIMINGOPT: multipipe8.tb:58:11: Use --timing or --no-timing to specify how delays should be handled
+                                         : ... note: In instance 'tb_multi_pipe'
+   58 |           #(20);
+      |           ^
+%Error-NEEDTIMINGOPT: multipipe8.tb:60:11: Use --timing or --no-timing to specify how delays should be handled
+                                         : ... note: In instance 'tb_multi_pipe'
+   60 |           #(20);
+      |           ^
+%Error-NEEDTIMINGOPT: multipipe8.tb:63:17: Use --timing or --no-timing to specify how event controls should be handled
+                                         : ... note: In instance 'tb_multi_pipe'
+   63 |                 @(posedge clk);  
+      |                 ^
+%Error: Exiting due to 8 error(s), 3 warning(s)
+--------------------------------------------------
+paraleltoserial.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: paraleltoserial.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module parallel2serial(
+      |        ^~~~~~~~~~~~~~~
+                       paraleltoserial.tb:3:8: ... Location of module with timescale
+    3 | module parallel2serial_tb;
+      |        ^~~~~~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:20:10: Use --timing or --no-timing to specify how delays should be handled
+                                              : ... note: In instance 'parallel2serial_tb'
+   20 |   always #5 clk = ~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:32:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   32 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:34:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   34 |         #10;
+      |         ^
+%Warning-WIDTHTRUNC: paraleltoserial.tb:35:11: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                             : ... note: In instance 'parallel2serial_tb'
+   35 |         d = $random;
+      |           ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:37:13: Use --timing or --no-timing to specify how event controls should be handled
+                                              : ... note: In instance 'parallel2serial_tb'
+   37 |             @(posedge clk);  
+      |             ^
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:41:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   41 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:44:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   44 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:47:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   47 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:50:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   50 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: paraleltoserial.tb:53:9: Use --timing or --no-timing to specify how delays should be handled
+                                             : ... note: In instance 'parallel2serial_tb'
+   53 |         #10;
+      |         ^
+%Error: Exiting due to 9 error(s), 2 warning(s)
+--------------------------------------------------
+pe.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: pe.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module pe(
+      |        ^~
+                       pe.tb:3:8: ... Location of module with timescale
+    3 | module test54();
+      |        ^~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: pe.tb:19:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   19 |     #5;
+      |     ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: pe.tb:21:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   21 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:24:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   24 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:28:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   28 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:30:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   30 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:35:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   35 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:37:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   37 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:42:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   42 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pe.tb:44:5: Use --timing or --no-timing to specify how delays should be handled
+                                : ... note: In instance 'test54'
+   44 |     #5;
+      |     ^
+%Error: Exiting due to 9 error(s), 1 warning(s)
+--------------------------------------------------
+pulse.v
+  Iverilog Compile: OK
+  Iverilog Simulation: FAIL
+  Message:
+===========Error===========
+pulse.tb:43: $finish called at 148 (1ns)
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: pulse.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module pulse_detect(
+      |        ^~~~~~~~~~~~
+                       pulse.tb:3:8: ... Location of module with timescale
+    3 | module pulse_detect_tb;
+      |        ^~~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: pulse.tb:20:10: Use --timing or --no-timing to specify how delays should be handled
+                                    : ... note: In instance 'pulse_detect_tb'
+   20 |  forever #5 clk=~clk;
+      |          ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: pulse.tb:26:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   26 |       #10;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:29:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   29 |       #28;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:31:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   31 |       #10      data_in = 0;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:32:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   32 |       #10      data_in = 0;  
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:33:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   33 |       #10      data_in = 0;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:34:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   34 |       #10      data_in = 1;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:35:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   35 |       #10      data_in = 0;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:36:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   36 |       #10      data_in = 1;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:37:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   37 |       #10      data_in = 0;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:38:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   38 |       #10      data_in = 1;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:39:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   39 |       #10      data_in = 1;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:40:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   40 |       #10      data_in = 0;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:41:7: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   41 |       #10;
+      |       ^
+%Error-NEEDTIMINGOPT: pulse.tb:47:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   47 |     #5;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:48:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   48 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:50:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   50 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:52:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   52 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:54:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   54 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:56:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   56 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:58:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   58 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:60:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   60 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:62:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   62 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:64:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   64 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:67:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   67 |     #20;
+      |     ^
+%Error-NEEDTIMINGOPT: pulse.tb:69:5: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'pulse_detect_tb'
+   69 |     #10;
+      |     ^
+%Error: Exiting due to 26 error(s), 1 warning(s)
+--------------------------------------------------
+radix.v
+  Iverilog Compile: FAIL
+  Iverilog Simulation: NOT RUN
+  Message:
+radix.tb:14: error: port ``res_ready'' is not a port of uut.
+1 error(s) during elaboration.
+--------------------------------------------------
+ram.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: ram.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module RAM #(
+      |        ^~~
+                       ram.tb:3:8: ... Location of module with timescale
+    3 | module tb_RAM;
+      |        ^~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: ram.tb:25:10: Input port connection 'write_addr' expects 6 bits on the pin connection, but pin connection's VARREF 'write_addr' generates 8 bits.
+                                 : ... note: In instance 'tb_RAM'
+   25 |         .write_addr(write_addr),
+      |          ^~~~~~~~~~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.047
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: ram.tb:26:10: Input port connection 'write_data' expects 8 bits on the pin connection, but pin connection's VARREF 'write_data' generates 6 bits.
+                                  : ... note: In instance 'tb_RAM'
+   26 |         .write_data(write_data),
+      |          ^~~~~~~~~~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: ram.tb:28:10: Input port connection 'read_addr' expects 6 bits on the pin connection, but pin connection's VARREF 'read_addr' generates 8 bits.
+                                 : ... note: In instance 'tb_RAM'
+   28 |         .read_addr(read_addr),
+      |          ^~~~~~~~~
+%Warning-WIDTHEXPAND: ram.tb:29:10: Output port connection 'read_data' expects 8 bits on the pin connection, but pin connection's VARREF 'read_data' generates 6 bits.
+                                  : ... note: In instance 'tb_RAM'
+   29 |         .read_data(read_data)
+      |          ^~~~~~~~~
+%Error-NEEDTIMINGOPT: ram.tb:33:12: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   33 |     always #((CLK_PERIOD)/2) clk = ~clk;
+      |            ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: ram.tb:48:13: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   48 |             #((CLK_PERIOD) * 5);
+      |             ^
+%Error-NEEDTIMINGOPT: ram.tb:51:13: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   51 |             #((CLK_PERIOD) * 2);
+      |             ^
+%Warning-WIDTHEXPAND: ram.tb:55:24: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's CONST '3'h0' generates 3 bits.
+                                  : ... note: In instance 'tb_RAM'
+   55 |             write_addr = 3'b000;
+      |                        ^
+%Warning-WIDTHTRUNC: ram.tb:56:24: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's RAND generates 32 bits.
+                                 : ... note: In instance 'tb_RAM'
+   56 |             write_data = $random;
+      |                        ^
+%Error-NEEDTIMINGOPT: ram.tb:57:13: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   57 |             #((CLK_PERIOD) * 1);
+      |             ^
+%Error-NEEDTIMINGOPT: ram.tb:59:13: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   59 |             #((CLK_PERIOD) * 1);
+      |             ^
+%Warning-WIDTHEXPAND: ram.tb:63:23: Operator ASSIGN expects 8 bits on the Assign RHS, but Assign RHS's CONST '3'h0' generates 3 bits.
+                                  : ... note: In instance 'tb_RAM'
+   63 |             read_addr = 3'b000;
+      |                       ^
+%Error-NEEDTIMINGOPT: ram.tb:64:13: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   64 |             #((CLK_PERIOD) * 1);
+      |             ^
+%Error-NEEDTIMINGOPT: ram.tb:68:13: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'tb_RAM'
+   68 |             #((CLK_PERIOD) * 1);
+      |             ^
+%Error: Exiting due to 7 error(s), 8 warning(s)
+--------------------------------------------------
+rightshift.v
+  Iverilog Compile: FAIL
+  Iverilog Simulation: NOT RUN
+  Message:
+rightshift.v:7: error: 'q' has already been declared in this scope.
+rightshift.v:4:      : It was declared here as a net.
+--------------------------------------------------
+serialtoparalel.v
+  Iverilog Compile: OK
+  Iverilog Simulation: FAIL (Endless loop probability)
+  Message:
+No output before timeout.
+--------------------------------------------------
+siggen.v
+  Iverilog Compile: OK
+  Iverilog Simulation: FAIL
+  Message:
+ERROR: siggen.tb:17: $readmemh: Unable to open tri_gen.txt for reading.
+===========Error===========
+siggen.tb:39: $finish called at 1010 (1s)
+  Verilator Compile: FAIL
+  Verilator Message:
+%Error-NEEDTIMINGOPT: siggen.tb:20:4: Use --timing or --no-timing to specify how delays should be handled
+                                    : ... note: In instance 'tb_signal_generator'
+   20 |    #10
+      |    ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Warning-WIDTHEXPAND: siggen.tb:26:20: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'wave' generates 5 bits.
+                                     : ... note: In instance 'tb_signal_generator'
+   26 |         error=(wave==reference[i])?error:error+1;
+      |                    ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: siggen.tb:27:9: Use --timing or --no-timing to specify how delays should be handled
+                                    : ... note: In instance 'tb_signal_generator'
+   27 |         #10;
+      |         ^
+%Error-NEEDTIMINGOPT: siggen.tb:42:8: Use --timing or --no-timing to specify how delays should be handled
+                                    : ... note: In instance 'tb_signal_generator'
+   42 | always #5 clk =~clk;
+      |        ^
+%Error: Exiting due to 3 error(s), 1 warning(s)
+--------------------------------------------------
+sync.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: sync.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module synchronizer (
+      |        ^~~~~~~~~~~~
+                       sync.tb:3:8: ... Location of module with timescale
+    3 | module testbench;
+      |        ^~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: sync.tb:27:12: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'testbench'
+   27 |     always #5 clk_a = ~clk_a;
+      |            ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: sync.tb:28:12: Use --timing or --no-timing to specify how delays should be handled
+                                   : ... note: In instance 'testbench'
+   28 |     always #10 clk_b = ~clk_b;
+      |            ^
+%Error-NEEDTIMINGOPT: sync.tb:39:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   39 |         #20 arstn = 1;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:40:3: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   40 |   #5 brstn = 1; 
+      |   ^
+%Error-NEEDTIMINGOPT: sync.tb:41:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   41 |         #50 data_in = 4;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:42:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   42 |         #10 data_en = 1;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:44:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   44 |         #100;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:46:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   46 |         #10 data_en = 0;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:47:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   47 |         #100;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:48:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   48 |         #50 data_in = 7;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:49:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   49 |         #10 data_en = 1;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:51:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   51 |         #80;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:53:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   53 |         #10 data_en = 0;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:54:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   54 |         #100;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:55:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   55 |         #50;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:56:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   56 |         #20 arstn = 0;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:57:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   57 |         #100;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:58:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   58 |         #20 arstn = 1;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:59:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   59 |         #50 data_in = 9;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:60:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   60 |         #10 data_en = 1;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:62:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   62 |         #100;
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:64:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   64 |         #10 data_en = 0;  
+      |         ^
+%Error-NEEDTIMINGOPT: sync.tb:65:9: Use --timing or --no-timing to specify how delays should be handled
+                                  : ... note: In instance 'testbench'
+   65 |         #100;
+      |         ^
+%Error: Exiting due to 23 error(s), 1 warning(s)
+--------------------------------------------------
+traffic.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: traffic.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module traffic_light(
+      |        ^~~~~~~~~~~~~
+                       traffic.tb:3:8: ... Location of module with timescale
+    3 | module tb_traffic_light;
+      |        ^~~~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: traffic.tb:26:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   26 |     #5 clk = ~clk;
+      |     ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: traffic.tb:39:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   39 |     #10;
+      |     ^
+%Error-NEEDTIMINGOPT: traffic.tb:41:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   41 |     #30;
+      |     ^
+%Error-NEEDTIMINGOPT: traffic.tb:47:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   47 |     #100;
+      |     ^
+%Error-NEEDTIMINGOPT: traffic.tb:52:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   52 |     #600;
+      |     ^
+%Error-NEEDTIMINGOPT: traffic.tb:57:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   57 |     #150;
+      |     ^
+%Warning-WIDTHEXPAND: traffic.tb:60:15: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'clock' generates 8 bits.
+                                      : ... note: In instance 'tb_traffic_light'
+   60 |     clock_cnt = clock;
+      |               ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.047
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: traffic.tb:62:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   62 |     #30;
+      |     ^
+%Warning-WIDTHEXPAND: traffic.tb:65:19: Operator NEQ expects 32 bits on the LHS, but LHS's VARREF 'clock' generates 8 bits.
+                                      : ... note: In instance 'tb_traffic_light'
+   65 |     error = (clock!=(clock_cnt+3)) ?error :error+1;
+      |                   ^~
+%Error-NEEDTIMINGOPT: traffic.tb:67:5: Use --timing or --no-timing to specify how delays should be handled
+                                     : ... note: In instance 'tb_traffic_light'
+   67 |     #10;
+      |     ^
+%Error: Exiting due to 8 error(s), 3 warning(s)
+--------------------------------------------------
+width816.v
+  Iverilog Compile: OK
+  Iverilog Simulation: PASS
+  Verilator Compile: FAIL
+  Verilator Message:
+%Warning-TIMESCALEMOD: width816.v:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module width_8to16 (
+      |        ^~~~~~~~~~~
+                       width816.tb:2:8: ... Location of module with timescale
+    2 | module testbench();
+      |        ^~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=5.047
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Error-NEEDTIMINGOPT: width816.tb:17:9: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   17 |  always #5 clk = ~clk;  
+      |         ^
+                      ... For error description see https://verilator.org/warn/NEEDTIMINGOPT?v=5.047
+%Error-NEEDTIMINGOPT: width816.tb:23:3: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   23 |   #10 rst=1;valid_in=1;data_in=8'b10100000;
+      |   ^
+%Error-NEEDTIMINGOPT: width816.tb:27:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   27 |  #10 data_in=8'b10100001; 
+      |  ^
+%Error-NEEDTIMINGOPT: width816.tb:29:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   29 |  #10 data_in=8'b10110000;
+      |  ^
+%Error-NEEDTIMINGOPT: width816.tb:33:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   33 |  #10 valid_in=0;
+      |  ^
+%Error-NEEDTIMINGOPT: width816.tb:34:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   34 |  #20 valid_in=1;data_in=8'b10110001; 
+      |  ^
+%Error-NEEDTIMINGOPT: width816.tb:35:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   35 |  #10 valid_in=0;
+      |  ^
+%Error-NEEDTIMINGOPT: width816.tb:39:2: Use --timing or --no-timing to specify how delays should be handled
+                                      : ... note: In instance 'testbench'
+   39 |  #30
+      |  ^
+%Error: Exiting due to 8 error(s), 1 warning(s)
+--------------------------------------------------
+
+PASSED FILES
+--------------------------------------------------
+JC.v
+accu.v
+adder16.v
+adder32.v
+adder8.v
+counter12.v
+div16.v
+edge.v
+freq.v
+fsm.v
+multi16.v
+multibooth8.v
+multipipe4.v
+multipipe8.v
+paraleltoserial.v
+pe.v
+ram.v
+sync.v
+traffic.v
+width816.v
+
+FAILED FILES
+--------------------------------------------------
+adderpipe64.v
+Message:
+adderpipe64.tb:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+adderpipe64.tb:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+------------------------------
+alu.v
+Message:
+ERROR: alu.tb:43: $readmemh: Unable to open reference.dat for reading.
+===========Error===========
+alu.tb:86: $finish called at 175000 (1ps)
+------------------------------
+asynfifo.v
+Message:
+ERROR: asynfifo.tb:65: $readmemh: Unable to open wfull.txt for reading.
+ERROR: asynfifo.tb:66: $readmemh: Unable to open rempty.txt for reading.
+ERROR: asynfifo.tb:67: $readmemh: Unable to open tdata.txt for reading.
+===========Error===========
+asynfifo.tb:52: $finish called at 1050 (1ns)
+------------------------------
+calendar.v
+Message:
+ERROR: calendar.tb:31: $readmemh: Unable to open reference.txt for reading.
+===========Error===========
+calendar.tb:48: $finish called at 40035000 (1ps)
+------------------------------
+pulse.v
+Message:
+===========Error===========
+pulse.tb:43: $finish called at 148 (1ns)
+------------------------------
+radix.v
+Message:
+radix.tb:14: error: port ``res_ready'' is not a port of uut.
+1 error(s) during elaboration.
+------------------------------
+rightshift.v
+Message:
+rightshift.v:7: error: 'q' has already been declared in this scope.
+rightshift.v:4:      : It was declared here as a net.
+------------------------------
+serialtoparalel.v
+Message:
+No output before timeout.
+------------------------------
+siggen.v
+Message:
+ERROR: siggen.tb:17: $readmemh: Unable to open tri_gen.txt for reading.
+===========Error===========
+siggen.tb:39: $finish called at 1010 (1s)
+------------------------------
